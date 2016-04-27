@@ -1,0 +1,17 @@
+SciProg Blatt 1 - Jan Schnitker
+
+f1, f2, and f3:
+1/-4
+4/3
+0/1
+
+The calculations compared to the expected results:
+13/12 == 13/12
+1/-3 == 1/-3
+16/3 == 16/3
+19/3 == 19/3
+-3/1 == -3/1
+3/-2 == 3/-2
+-3/16 == -3/16
+
+It passed all tests!
