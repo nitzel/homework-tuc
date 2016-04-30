@@ -28,6 +28,8 @@ void List::append (int i) {
   Node *c;
   for (c = m_first; next(c) != 0; c = next(c)); // get last node
   c->m_next = new Node(i);
+  m_minCacheOk = false;
+  m_maxCacheOk = false;
 }
 void List::insert (Node *n, int i){
   if(n == nullptr) return;
@@ -36,6 +38,8 @@ void List::insert (Node *n, int i){
 
   if(next(c) == n){
     c->m_next = new Node(i, n); // insert new node
+    m_minCacheOk = false;
+    m_maxCacheOk = false;
   }
 }
 void List::erase (Node *n){
@@ -45,6 +49,8 @@ void List::erase (Node *n){
   if(next(c) == n){
     c->m_next = n->m_next;
     n->m_next = nullptr;
+    m_minCacheOk = false;
+    m_maxCacheOk = false;
   }
   delete n; // delete n anyways
 }
@@ -56,21 +62,39 @@ void List::print() const {
   std::cout << std::endl;
 }
 
-Node * List::findMin() const{
+Node * List::findMin() {
+  static Node * last; // cached minimum
+  if(m_minCacheOk) {
+    std::cout << "(Min-Cache used) ";
+    return last;
+  }
+  // update cache
   Node * min = nullptr;
   for (Node * c = m_first->m_next; c != nullptr; c = next(c)){
     // if min is not initialized or higher than c, overwrite
     if(min == nullptr || min->value > c->value)
       min = c;
   }
+
+  last = min;
+  m_minCacheOk = true;
   return min;
 }
-Node * List::findMax() const {
+Node * List::findMax() {
+  static Node * last; // cached maximum
+  if(m_maxCacheOk){
+    std::cout << "(Max-Cache used) ";
+    return last;
+  }
+  // update cache
   Node * max = nullptr;
   for (Node * c = m_first->m_next; c != nullptr; c = next(c)){
     // if min is not initialized or higher than c, overwrite
     if(max == nullptr || max->value < c->value)
       max = c;
   }
+
+  last = max;
+  m_maxCacheOk = true;
   return max;
 }

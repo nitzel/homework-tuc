@@ -103,6 +103,10 @@ void testListMinMax(){
       l.insert(where, a[i]);
       l.print();
     }
+    for(int i=0; i<2; i++){
+      cout << "Min " << l.findMin()->value << endl;
+      cout << "Max " << l.findMax()->value << endl;
+    }
   }
 
 }
