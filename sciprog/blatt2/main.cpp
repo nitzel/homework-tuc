@@ -88,4 +88,21 @@ void testListMinMax(){
       l.print();
     }
   }
+  // Adding a bunch of numbers and finding the min/max of the list
+  // we'll insert the next number in front of the previous lists max/min
+  {
+    const int a[] = {5,6,4,7,3,8,2};
+    const int alen = 7;
+    List l;
+    l.append(a[0]);
+    for(int i = 1; i<alen; i++){
+      Node * where;
+      if(i%2) where = l.findMax();
+      else where = l.findMin();
+      cout << (i%2?"Max: ":"Min: ") << where->value << endl;
+      l.insert(where, a[i]);
+      l.print();
+    }
+  }
+
 }

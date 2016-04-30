@@ -55,3 +55,22 @@ void List::print() const {
     std::cout << "->" << n->value;
   std::cout << std::endl;
 }
+
+Node * List::findMin() const{
+  Node * min = nullptr;
+  for (Node * c = m_first->m_next; c != nullptr; c = next(c)){
+    // if min is not initialized or higher than c, overwrite
+    if(min == nullptr || min->value > c->value)
+      min = c;
+  }
+  return min;
+}
+Node * List::findMax() const {
+  Node * max = nullptr;
+  for (Node * c = m_first->m_next; c != nullptr; c = next(c)){
+    // if min is not initialized or higher than c, overwrite
+    if(max == nullptr || max->value < c->value)
+      max = c;
+  }
+  return max;
+}

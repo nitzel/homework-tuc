@@ -19,6 +19,9 @@ public:
   ~List ();  // clean up the list and all nodes
   Node *first() const;  // return a pointer to the first entry
   Node *next(const Node *n) const; // return a pointer to the node after n
+
+  Node * findMin() const; // find node with lowest value
+  Node * findMax() const; // find node with highest value
   void append (int i);  // append a value to the end of the list
   // insert a value before n. won't insert if n is missing
   void insert (Node *n, int i);
