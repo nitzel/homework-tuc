@@ -57,4 +57,11 @@ p = 0; // Hierdurch können wir sicherstellen, dass zukünftige delete p;
 #### 4. Verkettete Liste
 1. Ein Pointer mit dem Wert `0` zeigt garantiert nicht auf (reservierten) Speicher. Entsprechend können Speicherzugriffsverletzungen leicht verhindert werden. `delete 0;` ist ebenfalls unschädlich.
 4. `List: ->1->2->3`
-5. Die Liste wird kopiert, allerdings ist mit Liste nur das Kopfkonstrukt gemeint, nicht die ganzen Nodes, die im Heap liegen. Beim löschen der Kopie stürzt das Programm mit einem `Error: double free [...]` ab. Die first-node wurde mehrfach freigegeben, weil in der Kopie noch ein Pointer darauf verblieb.
+5. Die Liste wird kopiert, allerdings ist mit Liste nur das Kopfkonstrukt gemeint, nicht die ganzen Nodes, die im Heap liegen. Beim löschen der Kopie stürzt das Programm mit einem `Error: double free [...]` ab. Die first-node wurde mehrfach freigegeben, weil in der Kopie noch ein Pointer darauf verblieb. Ließe sich durch angepassten Copy-Konstruktor vermeiden.
+
+#### 5. Verkette Liste Min/Max
+- Gute Testfälle:
+  - Löschen von nichtexistenten Nodes
+  - Insert vor nichtexistenten Nodes
+  - Ob die Nodes tatsächlich `deleted` wurden.
+- Seiteneffekte ???

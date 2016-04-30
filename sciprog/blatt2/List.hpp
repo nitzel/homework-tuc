@@ -14,7 +14,8 @@ class List {
 public:
   void print() const;
 
-  List ();  // create an empty list
+  List () : List(nullptr, 0) {};  // create an empty list
+  List (const int * array, int length);  // create a list resembling the array
   ~List ();  // clean up the list and all nodes
   Node *first() const;  // return a pointer to the first entry
   Node *next(const Node *n) const; // return a pointer to the node after n
