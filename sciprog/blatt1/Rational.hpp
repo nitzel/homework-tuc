@@ -33,10 +33,10 @@ public:
   int denominator() const;
   // operators
   Rational operator!() const; // inverse
-  Rational operator+=(const Rational &rhd);
-  Rational operator-=(const Rational &rhd);
-  Rational operator*=(const Rational &rhd);
-  Rational operator/=(const Rational &rhd);
+  Rational& operator+=(const Rational &rhd);
+  Rational& operator-=(const Rational &rhd);
+  Rational& operator*=(const Rational &rhd);
+  Rational& operator/=(const Rational &rhd);
   bool     operator==(const Rational &rhd) const;
   Rational operator+(const Rational &rhd) const;
   Rational operator-(const Rational &rhd) const;

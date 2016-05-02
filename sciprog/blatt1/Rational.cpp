@@ -42,11 +42,12 @@ Rational Rational::operator+(const Rational &rhd) const {
   lhd+=rhd;
   return lhd;
 }
-Rational Rational::operator+=(const Rational &rhd) {
+Rational& Rational::operator+=(const Rational &rhd) {
   // extend to a common denominator and sum up the numerators
   m_numerator = numerator()*rhd.denominator() + denominator()*rhd.numerator();
   m_denominator = denominator() * rhd.denominator(); // 2nd step!
   simplify();
+  return *this;
 }
 /// -
 Rational Rational::operator-(const Rational &rhd) const {
@@ -54,8 +55,8 @@ Rational Rational::operator-(const Rational &rhd) const {
   lhd-=rhd;
   return lhd;
 }
-Rational Rational::operator-=(const Rational &rhd) {
-  *this += -1 * rhd;
+Rational& Rational::operator-=(const Rational &rhd) {
+  return (*this += -1 * rhd);
 }
 /// *
 Rational Rational::operator*(const Rational &rhd) const {
@@ -63,10 +64,11 @@ Rational Rational::operator*(const Rational &rhd) const {
   lhd*=rhd;
   return lhd;
 }
-Rational Rational::operator*=(const Rational &rhd) {
+Rational& Rational::operator*=(const Rational &rhd) {
   m_numerator = numerator() * rhd.numerator();
   m_denominator = denominator() * rhd.denominator();
   simplify();
+  return *this;
 }
 /// /
 Rational Rational::operator/(const Rational &rhd) const {
@@ -74,8 +76,8 @@ Rational Rational::operator/(const Rational &rhd) const {
   lhd/=rhd;
   return lhd;
 }
-Rational Rational::operator/=(const Rational &rhd) {
-  *this *= !rhd; // multiply with inverse
+Rational& Rational::operator/=(const Rational &rhd) {
+  return (*this *= !rhd); // multiply with inverse
 }
 /// == ->  (a,b)==(a,b) || (a,b)==(-a,-b)
 bool Rational::operator==(const Rational &rhd) const {
