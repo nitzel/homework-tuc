@@ -18,7 +18,7 @@ Jan Schnitker
 
 #### 2. Destruktor ?
 Der Destruktor einer Klasse `C` ist dafür verantwortlich ...
-... alle Komponenten von Objekten der Klasse `C`, die auf dem Heap liegen, wegzuräumen.
+... alle Komponenten von Objekten der Klasse `C` wegzuräumen. Für auf dem Heap reservierten Speicher muss das manuell gemacht werden.
 
 #### 3. New & Delete
 ```c
@@ -63,5 +63,6 @@ p = 0; // Hierdurch können wir sicherstellen, dass zukünftige delete p;
 - Gute Testfälle:
   - Löschen von nichtexistenten Nodes
   - Insert vor nichtexistenten Nodes
-  - Ob die Nodes tatsächlich `deleted` wurden.
+  - Ob der Speicher der Nodes tatsächlich freigegeben wurde
+  - Insert/Add am Anfang, Ende und Mitte.
 - Seiteneffekte ???
