@@ -1,28 +1,9 @@
 /**
- * @author Jan Schnitker
+ * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
  * @file main.cpp
- * @desc Homework Blatt1 for SciProg
- * Testing unit for the class Rational.
- * @compile g++ main.cpp Rational.cpp -std=c++11
- *
- * @output
- SciProg Blatt 1 - Jan Schnitker
-
- f1, f2, and f3:
- 1/-4
- 4/3
- 0/1
-
- The calculations compared to the expected results:
- 13/12 == 13/12
- 1/-3 == 1/-3
- 16/3 == 16/3
- 19/3 == 19/3
- -3/1 == -3/1
- 3/-2 == 3/-2
- -3/16 == -3/16
-
- It passed all tests!
+ * @desc Homework Blatt2 for SciProg
+ * Testing unit for a linked list class
+ * @compile g++ main.cpp List.cpp -std=c++11
  */
 
 #include <iostream>
@@ -91,6 +72,7 @@ void testListMinMax(){
   // Adding a bunch of numbers and finding the min/max of the list
   // we'll insert the next number in front of the previous lists max/min
   {
+    cout << endl << "# Test findMin/findMax after inserting" << endl;
     const int a[] = {5,6,4,7,3,8,2};
     const int alen = 7;
     List l;
@@ -103,6 +85,7 @@ void testListMinMax(){
       l.insert(where, a[i]);
       l.print();
     }
+    cout << endl << "# Test findMin/findMax Caching" << endl;
     for(int i=0; i<2; i++){
       cout << "Min " << l.findMin()->value << endl;
       cout << "Max " << l.findMax()->value << endl;

@@ -1,8 +1,8 @@
 /**
- * @author Jan Schnitker
+ * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
  * @file Node.cpp
  * @desc Homework Blatt1 for SciProg
- * See Rational.hpp
+ * See List.hpp
  */
 #include "List.hpp"
 
@@ -18,18 +18,18 @@ List::~List () {
   delete m_first; // recurses!
 }
 Node* List::first() const {
-  return next(m_first); //m_first->m_next;
+  return next(m_first); //m_first->next;
 }
 Node* List::next(const Node *n) const {
   if(n == nullptr) return nullptr;
-  return n->m_next;
+  return n->next;
 }
 void List::append (int i) {
   Node *c;
   for (c = m_first; next(c) != nullptr; c = next(c)); // get last node
-  c->m_next = new Node(i);
-  m_minCacheOk = false;
-  m_maxCacheOk = false;
+  c->next = new Node(i);
+  m_maxCache = nullptr; // reset max cache
+  m_minCache = nullptr; // reset min cache
 }
 void List::insert (Node *n, int i){
   if(n == nullptr) return;
@@ -37,9 +37,9 @@ void List::insert (Node *n, int i){
   for (c = m_first; next(c) != n && c != nullptr; c = next(c)); // get node before *n
 
   if(next(c) == n){
-    c->m_next = new Node(i, n); // insert new node
-    m_minCacheOk = false;
-    m_maxCacheOk = false;
+    c->next = new Node(i, n); // insert new node
+    m_maxCache = nullptr; // reset max cache
+    m_minCache = nullptr; // reset min cache
   }
 }
 void List::erase (Node *n){
@@ -47,10 +47,11 @@ void List::erase (Node *n){
   Node * c;
   for (c = m_first; next(c) != n && c != nullptr; c = next(c)); // get node before *n
   if(next(c) == n){
-    c->m_next = n->m_next;
-    n->m_next = nullptr; // to avoid deletion of the whole list
-    m_minCacheOk = false;
-    m_maxCacheOk = false;
+    c->next = n->next;
+    n->next = nullptr; // to avoid deletion of the whole list
+
+    if(n == m_maxCache) m_maxCache = nullptr; // reset max cache
+    if(n == m_minCache) m_minCache = nullptr; // reset min cache
   }
   delete n; // delete n anyways - this may or may not be a good idea
 }
@@ -63,38 +64,34 @@ void List::print() const {
 }
 
 Node * List::findMin() {
-  static Node * last; // cached minimum
-  if(m_minCacheOk) {
-    std::cout << "(Min-Cache used) ";
-    return last;
+  if(m_minCache) {
+    std::cout << "(Using Min-Cache) ";
+    return m_minCache;
   }
   // update cache
   Node * min = nullptr;
-  for (Node * c = m_first->m_next; c != nullptr; c = next(c)){
+  for (Node * c = m_first->next; c != nullptr; c = next(c)){
     // if min is not initialized or higher than c, overwrite
     if(min == nullptr || min->value > c->value)
       min = c;
   }
 
-  last = min;
-  m_minCacheOk = true;
+  m_minCache = min;
   return min;
 }
 Node * List::findMax() {
-  static Node * last; // cached maximum
-  if(m_maxCacheOk){
-    std::cout << "(Max-Cache used) ";
-    return last;
+  if(m_maxCache){
+    std::cout << "(Using Max-Cache) ";
+    return m_maxCache;
   }
   // update cache
   Node * max = nullptr;
-  for (Node * c = m_first->m_next; c != nullptr; c = next(c)){
+  for (Node * c = m_first->next; c != nullptr; c = next(c)){
     // if min is not initialized or higher than c, overwrite
     if(max == nullptr || max->value < c->value)
       max = c;
   }
 
-  last = max;
-  m_maxCacheOk = true;
+  m_maxCache = max;
   return max;
 }

@@ -1,7 +1,9 @@
 /**
- * @author Jan Schnitker
+ * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
  * @file Node.hpp
  * @desc Homework Blatt2 for SciProg
+ * A linked list consisting of Nodes. Offers several methods
+ * for appending, inserting, erasing and also finding the min/max Nodes.
 */
 
 #ifndef __H__LIST__
@@ -17,19 +19,20 @@ public:
   List () : List(nullptr, 0) {};  // create an empty list
   List (const int * array, int length);  // create a list resembling the array
   ~List ();  // clean up the list and all nodes
-  Node *first() const;  // return a pointer to the first entry
-  Node *next(const Node *n) const; // return a pointer to the node after n
+  Node * first() const;  // return a pointer to the first entry
+  Node * next(const Node *n) const; // return a pointer to the node after n
 
   Node * findMin(); // find node with lowest value
   Node * findMax(); // find node with highest value
   void append (int i);  // append a value to the end of the list
   // insert a value before n. won't insert if n is missing
   void insert (Node *n, int i);
-  void erase (Node *n);  // remove n from the list
+  void erase (Node *n);  // remove n from the list and delete it.
 private:
   Node * m_first; // pseudo node, points to the first real node in the list
-  bool m_minCacheOk = false; // weather the cache needs an update
-  bool m_maxCacheOk = false; // weather the cache needs an update
+  Node * m_maxCache = nullptr; // the cache for the maximum
+  Node * m_minCache = nullptr; // the cache for the maximum
+
 };
 
 #endif
