@@ -17,7 +17,7 @@ Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
 - `*p + i > i` → `bool`
 
 
-#### 2. Destruktor ?
+#### 2. Destruktor
 Der Destruktor einer Klasse `C` ist dafür verantwortlich ...
 ... alle Komponenten von Objekten der Klasse `C` wegzuräumen. Für auf dem Heap reservierten Speicher muss das manuell gemacht werden. Der Destruktor von Variablen wird automatisch aufgerufen.
 
