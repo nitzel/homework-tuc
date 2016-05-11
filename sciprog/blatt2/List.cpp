@@ -26,7 +26,7 @@ Node* List::next(const Node *n) const {
 }
 void List::append (int i) {
   Node *c;
-  for (c = m_first; next(c) != 0; c = next(c)); // get last node
+  for (c = m_first; next(c) != nullptr; c = next(c)); // get last node
   c->m_next = new Node(i);
   m_minCacheOk = false;
   m_maxCacheOk = false;
@@ -52,7 +52,7 @@ void List::erase (Node *n){
     m_minCacheOk = false;
     m_maxCacheOk = false;
   }
-  delete n; // delete n anyways
+  delete n; // delete n anyways - this may or may not be a good idea
 }
 
 void List::print() const {
