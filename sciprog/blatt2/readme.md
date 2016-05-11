@@ -1,9 +1,10 @@
 ## SciProg Blatt 2
-Jan Schnitker
+Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
 
 
 #### 1. Pointer
 `int i, *p;`
+
 1. `i + 1` → `int`
 - `*p` → `int`
 - `*p + 3` → `int`
@@ -11,14 +12,14 @@ Jan Schnitker
 - `i == *p` → `bool`
 - `&p` → `int**`
 - `p+1` → `int*`
-- `&p == i` → `bool` but `==(int**,int)` forbidden by `ISO C++`
+- `&p == i` → `bool` **ABER** `==(int**,int) forbidden by ISO C++`
 - `**(&p)` → `int`
 - `*p + i > i` → `bool`
 
 
 #### 2. Destruktor ?
 Der Destruktor einer Klasse `C` ist dafür verantwortlich ...
-... alle Komponenten von Objekten der Klasse `C` wegzuräumen. Für auf dem Heap reservierten Speicher muss das manuell gemacht werden.
+... alle Komponenten von Objekten der Klasse `C` wegzuräumen. Für auf dem Heap reservierten Speicher muss das manuell gemacht werden. Der Destruktor von Variablen wird automatisch aufgerufen.
 
 #### 3. New & Delete
 ```c
@@ -65,4 +66,7 @@ p = 0; // Hierdurch können wir sicherstellen, dass zukünftige delete p;
   - Insert vor nichtexistenten Nodes
   - Ob der Speicher der Nodes tatsächlich freigegeben wurde
   - Insert/Add am Anfang, Ende und Mitte.
-- Seiteneffekte ???
+- Seiteneffekte
+  - Bei Min/Max ist nach Änderung der Cache evtl. falsch.
+  - Mit erase wird direkt vom Heap gelöscht, und nicht nur die Pointer in der Liste umgebogen.
+    - Hier könnte man vielleicht smart pointers verwenden, die ihre Referenzen mitzählen.
