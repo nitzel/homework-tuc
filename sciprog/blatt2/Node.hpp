@@ -10,7 +10,6 @@
 #define __H__NODE__
 
 #include <iostream>
-//#include "List.hpp"
 
 class Node
 {
