@@ -22,7 +22,7 @@ public:
 
   ~Node(){ // deletes the next node, too = whole list
     std::cout << "destr node " << value << std::endl;
-    delete m_next;  m_next = 0;
+    delete m_next;  m_next = nullptr;
   }
 
   int value;
