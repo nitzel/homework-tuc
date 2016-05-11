@@ -48,7 +48,7 @@ void List::erase (Node *n){
   for (c = m_first; next(c) != n && c != nullptr; c = next(c)); // get node before *n
   if(next(c) == n){
     c->m_next = n->m_next;
-    n->m_next = nullptr;
+    n->m_next = nullptr; // to avoid deletion of the whole list
     m_minCacheOk = false;
     m_maxCacheOk = false;
   }
