@@ -63,11 +63,11 @@ void testListMinMax(){
     l.print();
 
     cout << endl << "# Test Erasing all nodes" << endl;
-    while(l.first() != nullptr){
+    /*while(l.first() != nullptr){
       cout << "Erase " << l.first()->value << " // ";
       l.erase(l.first());
       l.print();
-    }
+    }*/
   }
   // Adding a bunch of numbers and finding the min/max of the list
   // we'll insert the next number in front of the previous lists max/min

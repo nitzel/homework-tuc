@@ -22,9 +22,12 @@ class Node
 friend class List;
 public:
   Node(int i) : Node(i, nullptr, nullptr) {};
-  Node(int i, NodeShared prev, NodeShared next) {
+  Node(int i, NodeShared prev, NodeShared next) :
+    Node(i, NodeWeak(prev), next){};
+  Node(int i, NodeWeak prev, NodeShared next) {
      value = i;
      this->next = next;
+     this->prev = prev;
   }
 
   ~Node(){ // deletes the next node, too = whole list
