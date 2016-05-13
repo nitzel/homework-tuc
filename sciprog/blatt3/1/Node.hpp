@@ -31,7 +31,7 @@ public:
   }
 
   ~Node(){ // deletes the next node, too = whole list
-    std::cout << "destr node " << value << std::endl;
+    std::cout << "dtor Node " << value << std::endl;
   }
 
   int value;

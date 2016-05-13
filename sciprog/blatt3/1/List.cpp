@@ -13,9 +13,10 @@ List::List (const int * array, int length){
 }
 
 List::~List () {
-  std::cout << "destr: ";
+  std::cout << "dtor ";
   print();
-  //delete m_first; // recurses!
+  // no need to do any actual thing here
+  // the smart pointers do everything :)
 }
 NodeShared List::first() const {
   return next(m_first); //m_first->next;
@@ -42,15 +43,15 @@ void List::insert (NodeShared n, int i){
   if(!n) return;
   NodeShared newNode(new Node(i, prev(n), n));
   if(prev(n)) prev(n)->next = newNode;
-  if(next(n)) n->prev = newNode;
+  n->prev = newNode;
 
   m_maxCache = nullptr; // reset max cache
   m_minCache = nullptr; // reset min cache
 }
 void List::erase (NodeShared n){
   if(!n) return;
-  if(prev(n)) prev(n)-> = next(n);
-  if(next(n)) next(n)-> = prev(n);
+  if(prev(n)) prev(n)->next = next(n);
+  if(next(n)) next(n)->prev = prev(n);
   // we decided not make n->next/prev a nullptr, so that these
   // pointers can still be used if n is continued to be used.
 
