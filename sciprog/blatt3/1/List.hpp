@@ -1,7 +1,7 @@
 /**
  * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
  * @file Node.hpp
- * @desc Homework Blatt2 for SciProg
+ * @desc Homework Blatt3 for SciProg
  * A linked list consisting of Nodes. Offers several methods
  * for appending, inserting, erasing and also finding the min/max Nodes.
 */
@@ -22,6 +22,7 @@ public:
   ~List ();  // clean up the list and all nodes
   NodeShared first() const;  // return a pointer to the first entry
   NodeShared next(const NodeShared n) const; // return a pointer to the node after n
+  NodeShared prev(const NodeShared n) const; // return a pointer to the node before n
 
   NodeShared findMin(); // find node with lowest value
   NodeShared findMax(); // find node with highest value

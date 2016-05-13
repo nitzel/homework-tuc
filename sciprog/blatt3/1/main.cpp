@@ -1,7 +1,7 @@
 /**
  * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
  * @file main.cpp
- * @desc Homework Blatt2 for SciProg
+ * @desc Homework Blatt3 for SciProg
  * Testing unit for a linked list class
  * @compile g++ main.cpp List.cpp -std=c++11
  */

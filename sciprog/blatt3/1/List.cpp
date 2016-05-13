@@ -1,7 +1,7 @@
 /**
  * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
  * @file Node.cpp
- * @desc Homework Blatt1 for SciProg
+ * @desc Homework Blatt3 for SciProg
  * See List.hpp
  */
 #include "List.hpp"
@@ -24,6 +24,13 @@ NodeShared List::next(const NodeShared n) const {
   if(n == nullptr) return nullptr;
   return n->next;
 }
+
+NodeShared List::prev(const NodeShared n) const {
+  if(n == nullptr || n->prev.lock() == m_first) // null if previous is m_first
+    return nullptr;
+  return n->prev.lock();
+}
+
 void List::append (int i) {
   NodeShared c;
   for (c = m_first; next(c) != nullptr; c = next(c)); // get last node
@@ -32,28 +39,27 @@ void List::append (int i) {
   m_minCache = nullptr; // reset min cache
 }
 void List::insert (NodeShared n, int i){
-  if(n == nullptr) return;
-  NodeShared c;
+  if(!n) return;
+  if(prev(n)) next(prev(n)) = NodeShared(new Node(i, prev(n), next(n)));
+  if(next(n)) prev(next(n)) = prev(n);
+  /*NodeShared c;
   for (c = m_first; next(c) != n && c != nullptr; c = next(c)); // get node before *n
 
   if(next(c) == n){
     c->next = NodeShared(new Node(i, n)); // insert new node
     m_maxCache = nullptr; // reset max cache
     m_minCache = nullptr; // reset min cache
-  }
+  }*/
 }
 void List::erase (NodeShared n){
-  if(n == nullptr) return;
-  NodeShared c;
-  for (c = m_first; next(c) != n && c != nullptr; c = next(c)); // get node before *n
-  if(next(c) == n){
-    c->next = n->next;
-    n->next = nullptr; // to avoid deletion of the whole list
+  if(!n) return;
+  if(prev(n)) next(prev(n)) = next(n);
+  if(next(n)) prev(next(n)) = prev(n);
+  // we decided not make n->next/prev a nullptr, so that these
+  // pointers can still be used if n is continued to be used.
 
-    if(n == m_maxCache) m_maxCache = nullptr; // reset max cache
-    if(n == m_minCache) m_minCache = nullptr; // reset min cache
-  }
-  //delete n; // delete n anyways - this may or may not be a good idea
+  if(n == m_maxCache) m_maxCache = nullptr; // reset max cache
+  if(n == m_minCache) m_minCache = nullptr; // reset min cache
 }
 
 void List::print() const {
