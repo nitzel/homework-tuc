@@ -49,8 +49,8 @@ void List::insert (NodeShared n, int i){
 }
 void List::erase (NodeShared n){
   if(!n) return;
-  if(prev(n)) next(prev(n)) = next(n);
-  if(next(n)) prev(next(n)) = prev(n);
+  if(prev(n)) prev(n)-> = next(n);
+  if(next(n)) next(n)-> = prev(n);
   // we decided not make n->next/prev a nullptr, so that these
   // pointers can still be used if n is continued to be used.
 
