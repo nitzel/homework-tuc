@@ -27,13 +27,17 @@ Rational::Rational(int numerator, int denominator) {
   simplify();
 }
 /**
- * "simplifies" a rational number, dividing it by the numerators and
- * denominators gcd.
+ * "simplifies" a rational number, dividing it by the numerators' and
+ * denominators' gcd.
  */
 void Rational::simplify() {
-  int tmpGcd = Rational::gcd(numerator(), denominator());
+  int tmpGcd = Rational::gcd(std::abs(numerator()), std::abs(denominator()));
   m_numerator = numerator() / tmpGcd;
   m_denominator = denominator() / tmpGcd;
+  if(m_denominator < 0){ // denominator always unsigned
+    m_numerator *= -1;
+    m_denominator *= -1;
+  }
 }
 
 /// +
@@ -81,11 +85,9 @@ Rational& Rational::operator/=(const Rational &rhd) {
 }
 /// == ->  (a,b)==(a,b) || (a,b)==(-a,-b)
 bool Rational::operator==(const Rational &rhd) const {
-  return
-     (numerator() == rhd.numerator() && denominator() == rhd.denominator())
-  || (numerator() ==-rhd.numerator() && denominator() ==-rhd.denominator());
-
+  return numerator() == rhd.numerator() && denominator() == rhd.denominator();
 }
+
 /// ! inverse value (Kehrwert)
 Rational Rational::operator!() const {
   return Rational(denominator(), numerator());

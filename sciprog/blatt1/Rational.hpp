@@ -5,9 +5,9 @@
  * A class representing fractions / rational numbers.
  * The consist of a numerator and a denominator and offer basic mathematical
  * operators like +,-,*,/,==,+=,-=,*=,/=,!(inverse value) with Rationals
- * and ints. They will always use the most simple form, though there is no
- * guarantee for negative numbers to have the negative sign on the numerator
- * or the denominator.
+ * and ints. They will always use the most simple form, with the sign
+ * being applied to the numerator. If a Rational is 0 (like 0/4, 0/9...) They
+ * are always represented as 0/1, staying easily comparable.
  *
  * 1. Was ist eine geeignete Datenstruktur für rationale Zahlen?
  * * Eine geeigente Datenstruktur zur Repräsentation Rationaler Zahlen
@@ -50,8 +50,9 @@ public:
   Rational(int numerator, int denominator);
 private:
   int m_numerator;
+  /** denominator is - after simplify - never  but to keep the code simpler
+  it stays an int */
   int m_denominator;
-
   void simplify();
 
 };

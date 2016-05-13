@@ -6,42 +6,41 @@
  * @compile g++ main.cpp Rational.cpp -std=c++11
  *
  * @output
- SciProg Blatt 1 - Jan Schnitker
+SciProg Blatt 1 - Jan Schnitker
 
- f1, f2, and f3:
- 1/-4
- 4/3
- 0/1
+f1, f2, and f3:
+-1/4
+4/3
+0/1
 
- The calculations compared to the expected results:
- 13/12 == 13/12
- 1/-3 == 1/-3
- 16/3 == 16/3
- 19/3 == 19/3
- -3/1 == -3/1
- 3/-2 == 3/-2
- -3/16 == -3/16
+The calculations compared to the expected results:
+13/12 == 13/12
+-1/3 == -1/3
+16/3 == 16/3
+19/3 == 19/3
+-3/1 == -3/1
+-3/2 == -3/2
+-3/16 == -3/16
 
- It passed all tests!
+It passed all tests!
+
  */
 
 #include <iostream>
 
 #include "Rational.hpp"
 
-using namespace std;
-
 int main(){
-  cout  << "SciProg Blatt 1 - Jan Schnitker" << endl << endl;
+  std::cout  << "SciProg Blatt 1 - Jan Schnitker" << std::endl << std::endl;
 
   Rational a(-3, 12);
   Rational b(4,  3);
   Rational c(0, 1);
 
-  cout << "f1, f2, and f3:" << endl;
-  a.print(); cout << endl;
-  b.print(); cout << endl;
-  c.print(); cout << endl << endl;
+  std::cout << "f1, f2, and f3:" << std::endl;
+  a.print(); std::cout << std::endl;
+  b.print(); std::cout << std::endl;
+  c.print(); std::cout << std::endl << std::endl;
 
   // the correct answers
   const Rational facts[] = {
@@ -57,20 +56,20 @@ int main(){
   };
 
   int fails = 0; // the # incorrect results
-  cout << "The calculations compared to the expected results:" << endl;
+  std::cout << "The calculations compared to the expected results:" << std::endl;
   for(int i = 0; i<7; i++){
     results[i].print();
     if(results[i] == facts[i]) // result was correct
-      cout << " == ";
+      std::cout << " == ";
     else {                     // or incorrect
-      cout << " != ";
+      std::cout << " != ";
       fails++;
     }
     facts[i].print();
-    cout << endl;
+    std::cout << std::endl;
   }
   if(fails)
-    cout << endl << fails << " / 7 operations failed" << endl;
+    std::cout << std::endl << fails << " / 7 operations failed" << std::endl;
   else
-    cout << endl << "It passed all tests!" << endl;
+    std::cout << std::endl << "It passed all tests!" << std::endl;
 }
