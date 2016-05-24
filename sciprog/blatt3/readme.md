@@ -20,7 +20,7 @@ Um diesem undefinierten Verhalten vorzubeugen wird der implizite cast generell v
 Das zweite Programm hat eine Zuweisung von `const int *` nach `int *` was wir - wäre erstes Programm legal - wie oben beschrieben, indirekt machen könnten.
 Siehe dazu auch [link](https://web.archive.org/web/20130227025936/http://www.parashift.com/c++-faq-lite/constptrptr-conversion.html)
 
- #### 3. Constness
+#### 3. Constness
  ```C++
  int foo ( const int & ){};
  int bar ( int & ){};
