@@ -22,7 +22,7 @@ public:
   ~List ();  // clean up the list and all nodes
   NodeShared first() const;  // return a pointer to the first entry
   NodeShared next(const NodeShared n) const; // return a pointer to the node after n
-  NodeShared prev(const NodeShared n) const; // return a pointer to the node before n
+  NodeShared prev(const NodeShared n) const; // return a pointer to the node before n, but not m_start
 
   NodeShared findMin(); // find node with lowest value
   NodeShared findMax(); // find node with highest value
@@ -35,6 +35,7 @@ private:
   NodeShared m_maxCache = nullptr; // the cache for the maximum
   NodeShared m_minCache = nullptr; // the cache for the maximum
 
+  NodeShared prev_(const NodeShared n) const; // return a pointer to the node before n, including m_start
 };
 
 #endif

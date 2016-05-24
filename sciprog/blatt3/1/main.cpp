@@ -91,5 +91,15 @@ void testListMinMax(){
       cout << "Max " << l.findMax()->value << endl;
     }
   }
+  // test if we can access m_first via prev(node)
+  {
+    const int a[] = {1,2,3}; const int alen = 3;
+    List l(a, alen);
+    NodeShared realFirst = l.prev(l.first());
+    if(realFirst)
+      std::cout << "accessed m_first: " << realFirst->value << std::endl;
+    else
+      std::cout << "could not access m_first: " << std::endl;
+  }
 
 }

@@ -26,8 +26,15 @@ NodeShared List::next(const NodeShared n) const {
   return n->next;
 }
 
+// for private usage only, because this way one can access m_first
+NodeShared List::prev_(const NodeShared n) const {
+  if(!n /* || n->prev.lock() == m_first */) // TODO for public but not for self: null if prev_ious is m_first
+    return nullptr;
+  return n->prev.lock();
+}
+// for public usage, because this way one can not access m_first
 NodeShared List::prev(const NodeShared n) const {
-  if(!n /* || n->prev.lock() == m_first */) // null if previous is m_first
+  if(!n || n->prev.lock() == m_first)
     return nullptr;
   return n->prev.lock();
 }
@@ -41,8 +48,8 @@ void List::append (int i) {
 }
 void List::insert (NodeShared n, int i){
   if(!n) return;
-  NodeShared newNode(new Node(i, prev(n), n));
-  if(prev(n)) prev(n)->next = newNode;
+  NodeShared newNode(new Node(i, prev_(n), n));
+  if(prev_(n)) prev_(n)->next = newNode;
   n->prev = newNode;
 
   m_maxCache = nullptr; // reset max cache
@@ -50,9 +57,9 @@ void List::insert (NodeShared n, int i){
 }
 void List::erase (NodeShared n){
   if(!n) return;
-  if(prev(n)) prev(n)->next = next(n);
-  if(next(n)) next(n)->prev = prev(n);
-  // we decided not make n->next/prev a nullptr, so that these
+  if(prev_(n)) prev_(n)->next = next(n);
+  if(next(n)) next(n)->prev = prev_(n);
+  // we decided not make n->next/prev_ a nullptr, so that these
   // pointers can still be used if n is continued to be used.
 
   if(n == m_maxCache) m_maxCache = nullptr; // reset max cache
@@ -61,10 +68,11 @@ void List::erase (NodeShared n){
 
 void List::print() const {
   std::cout << "List: ";
-  for (NodeShared n = first(); n; n = next(n))
-    std::cout << "-> " << n->value ;
-    // std::cout << "-> (" << n->value << "|" << (prev(n)?prev(n)->value:-5) << "|" << (next(n)?next(n)->value:-5) << ")";
-    std::cout << std::endl;
+  for (NodeShared n = first(); n; n = next(n)){
+    //std::cout << "-> " << n->value ;
+    std::cout << "-> (" << (prev_(n)?std::to_string(prev_(n)->value):"_") << "<" << n->value << ">" << (next(n)?std::to_string(next(n)->value):"_") << ")";
+  }
+  std::cout << std::endl;
 }
 
 NodeShared List::findMin() {
