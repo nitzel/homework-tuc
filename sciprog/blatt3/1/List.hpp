@@ -2,7 +2,7 @@
  * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
  * @file Node.hpp
  * @desc Homework Blatt3 for SciProg
- * A linked list consisting of Nodes. Offers several methods
+ * A double linked list consisting of Nodes. Offers several methods
  * for appending, inserting, erasing and also finding the min/max Nodes.
 */
 

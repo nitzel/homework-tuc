@@ -2,7 +2,7 @@
  * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
  * @file Node.hpp
  * @desc Homework Blatt3 for SciProg
- * A node for a linked list, pointing to the next node in line.
+ * A node for a double linked list, pointing to the next&previous node in line.
  * It contains an integer as value.
 */
 
