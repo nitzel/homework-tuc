@@ -1,6 +1,6 @@
 /**
  * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
- * @file Node.cpp
+ * @file List.cpp
  * @desc Homework Blatt3 for SciProg
  * See List.hpp
  */
