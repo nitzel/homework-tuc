@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <memory> // smart pointers
-#include "Node.hpp"
+#include "List.hpp"
 
 class List {
 public:
