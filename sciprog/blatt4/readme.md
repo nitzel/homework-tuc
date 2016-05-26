@@ -37,3 +37,45 @@ struct MaybeEvenBetter {
 #### 2. Vererbung und Komposition
 
 #### 3. Vererbung und Funktionen
+```c++
+#include<iostream>
+
+class A {
+  public: void foo() const { std::cout<<"A::foo"<<std::endl; }
+};
+
+class B : public A {
+  public: void foo() { std::cout<<"B::foo"<<std::endl; }
+};
+
+class C : private B { // 2. class C : public B {
+  public: void bar() { foo();}
+};
+
+void test(const A& a) {
+  a.foo();
+}
+
+int main() {
+  A a; B b; C c;
+  a.foo();
+  b.foo();
+  test(b);
+  c.bar();
+  test(c); // 1. Entferne diese Zeile
+}
+```
+Um das Programm lauffähig zu machen, wird entweder Änderung `1.` durchgeführt oder `2.`.
+Die Ausgaben sind dann Folgende:
+```c++
+A::foo // 1. & 2.
+B::foo // 1. & 2.
+A::foo // 1. & 2.
+B::foo // 1. & 2.
+A::foo // 2.
+```
+1. `a.foo()` ruft `A::foo()` auf
+- `b.foo()` ruft `B::foo()` auf
+- `test(b)` konvertiert `b` in ein `const A` und ruft entsprechend `A::foo()` auf
+- `c.bar()` ruft das von `B` an `C` vererbte `B::foo()` auf
+- `test(c)` konvertiert `c` in ein `const A` (wenn public vererbt wurde) und ruft entsprechend `A::foo()` auf
