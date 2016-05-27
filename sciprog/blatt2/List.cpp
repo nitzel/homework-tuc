@@ -1,6 +1,6 @@
 /**
  * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
- * @file Node.cpp
+ * @file List.cpp
  * @desc Homework Blatt1 for SciProg
  * See List.hpp
  */
@@ -28,8 +28,7 @@ void List::append (int i) {
   Node *c;
   for (c = m_first; next(c) != nullptr; c = next(c)); // get last node
   c->next = new Node(i);
-  m_maxCache = nullptr; // reset max cache
-  m_minCache = nullptr; // reset min cache
+  udpateCacheWithNewNode(n);
 }
 void List::insert (Node *n, int i){
   if(n == nullptr) return;
@@ -38,8 +37,7 @@ void List::insert (Node *n, int i){
 
   if(next(c) == n){
     c->next = new Node(i, n); // insert new node
-    m_maxCache = nullptr; // reset max cache
-    m_minCache = nullptr; // reset min cache
+    udpateCacheWithNewNode(n);
   }
 }
 void List::erase (Node *n){
@@ -63,7 +61,7 @@ void List::print() const {
   std::cout << std::endl;
 }
 
-Node * List::findMin() {
+Node * List::findMin() const {
   if(m_minCache) {
     std::cout << "(Using Min-Cache) ";
     return m_minCache;
@@ -79,7 +77,7 @@ Node * List::findMin() {
   m_minCache = min;
   return min;
 }
-Node * List::findMax() {
+Node * List::findMax() const {
   if(m_maxCache){
     std::cout << "(Using Max-Cache) ";
     return m_maxCache;
@@ -94,4 +92,13 @@ Node * List::findMax() {
 
   m_maxCache = max;
   return max;
+}
+
+void List::udpateCacheWithNewNode(Node * n){\
+  if(!n) return;
+  if(m_maxCache && n->value > m_maxCache->value)
+    m_maxCache = n;
+  else if(m_minCache && n->value < m_minCache->value)
+    m_minCache = n;
+
 }
