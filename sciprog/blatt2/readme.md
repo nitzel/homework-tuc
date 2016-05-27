@@ -19,7 +19,7 @@ Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
 
 #### 2. Destruktor
 Der Destruktor einer Klasse `C` ist dafür verantwortlich ...
-... alle Komponenten von Objekten der Klasse `C` wegzuräumen. Für auf dem Heap reservierten Speicher muss das manuell gemacht werden. Der Destruktor von Variablen wird automatisch aufgerufen.
+... alle Komponenten von Objekten der Klasse `C`, die im Heap liegen, wegzuräumen. Für auf dem Heap reservierten Speicher muss das im Destruktor manuell gemacht werden während der Destruktor von Membervariablen auf dem Stack automatisch aufgerufen wird.
 
 #### 3. New & Delete
 ```c
