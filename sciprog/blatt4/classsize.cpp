@@ -5,8 +5,6 @@
  */
 #include <iostream>
 
-using namespace std;
-
 class Empty {
 };
 
@@ -18,9 +16,10 @@ class NonEmpty : public Empty {
 };
 
 class Composite {
-  int b;
   Empty a;
+  int b;
 };
+
 struct Waste {
   char b;
   int a;
@@ -29,11 +28,9 @@ struct Waste {
 
 
 int main(){
-  cout << sizeof(Empty) << endl;
-  cout << sizeof(EmptyDerived) << endl;
-  cout << sizeof(NonEmpty) << endl;
-  cout << sizeof(Composite) << endl;
-  Composite c;
-  cout << sizeof(c) << endl;
-  cout << sizeof(Waste) << endl;
+  std::cout << "Empty: " << sizeof(Empty) << std::endl;
+  std::cout << "EmptyDerived: " << sizeof(EmptyDerived) << std::endl;
+  std::cout << "NonEmpty: " << sizeof(NonEmpty) << std::endl;
+  std::cout << "Composite: " << sizeof(Composite) << std::endl;
+  std::cout << "Waste: " << sizeof(Waste) << std::endl;
 }
