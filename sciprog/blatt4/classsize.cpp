@@ -1,3 +1,8 @@
+/**
+ * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
+ * @file classsize.cpp
+ * @desc Homework Blatt4 for SciProg
+ */
 #include <iostream>
 
 using namespace std;
