@@ -38,7 +38,9 @@ struct MaybeEvenBetter {
 ```
 
 #### 2. Vererbung und Komposition
-
+###### Programmausgabe: 
+norm is 5.09902
+vector is [1, 3, 4]
 #### 3. Vererbung und Funktionen
 ```c++
 #include<iostream>
