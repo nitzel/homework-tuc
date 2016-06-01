@@ -1,3 +1,8 @@
+/**
+ * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
+ * @file NumVectorDerived.cpp
+ * @desc Homework Blatt4 for SciProg
+ */
 #include<iostream>
 #include<cmath>
 #include<vector>
