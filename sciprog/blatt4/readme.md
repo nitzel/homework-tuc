@@ -1,3 +1,6 @@
+##SciProg Blatt 4
+
+Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
 #### 1. Leere-Basisklassen-Optimierung
 
 | Class           | Bytes |
