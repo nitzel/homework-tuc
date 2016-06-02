@@ -58,7 +58,7 @@ public static void main(String[] args){
  * Es hat sich ein valides C++ Programm ergeben
  * Nach den Präprocessordirektiven wird die main() Funktion aufgerufen
  * und parent und child erstellt. Sobald sie eine gegenseitige kennt-ein Beziehung
- * aufgebaut haben, wird die aim Methode von Parent mit einer Ball-Instanz
+ * aufgebaut haben, wird die aim Methode von parent mit einer Ball-Instanz
  * aufgerufen. Ball wird als Exception geworfen und die Exception sofort
  * aufgefangen. Das auffangen zeichnet sich dadurch aus, dass nun die aim Methode
  * vom child aufgerufen wird. Es wird also abwechselnd die aim Methode der beiden
