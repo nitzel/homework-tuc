@@ -1,3 +1,9 @@
+/**
+ * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
+ * @file Funktion_1.cpp
+ * @desc Homework Blatt6 for SciProg
+ */
+
 #include "Funktion_1.h"
 #include <cmath>
 
