@@ -1,6 +1,6 @@
 /**
  * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
- * @file Simpson.h
+ * @file Simpson.cpp
  * @desc Homework Blatt6 for SciProg
  */
 
