@@ -1,3 +1,9 @@
+/**
+ * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
+ * @file Simpson.h
+ * @desc Homework Blatt6 for SciProg
+ */
+
 #include "Simpson.h"
 
 double Simpson :: computeQuadratur(Funktion* f, double a, double b)
