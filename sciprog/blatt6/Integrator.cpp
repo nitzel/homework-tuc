@@ -1,11 +1,17 @@
 
+/**
+ * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
+ * @file Integrator.cpp
+ * @desc Homework Blatt6 for SciProg
+ */
+
 #include "Integrator.h"
 
 
 double Integrator::computeQuadratur(Funktion* f, double a, double b, Quadratur* q, int n){
 	double deltaX = (b - a) / n;
 	double result = 0;
-	// Aufteilung der Intervallgrenzen in Teilintervalle und  Bildung der Summe über die Integrale der Teilintervalle.
+	// Aufteilung der Intervallgrenzen in Teilintervalle und  Bildung der Summe Ã¼ber die Integrale der Teilintervalle.
 	for (int i = 0; i < n; i++)
 	{
 		double left = a + i*deltaX;
