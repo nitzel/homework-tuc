@@ -1,3 +1,9 @@
+/**
+ * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
+ * @file Trapez.h
+ * @desc Homework Blatt6 for SciProg
+ */
+
 #pragma once
 #include "Quadratur.h"
 
