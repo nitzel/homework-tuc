@@ -1,3 +1,9 @@
+/**
+ * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
+ * @file Test.cpp
+ * @desc Homework Blatt6 for SciProg
+ */
+
 #include "Funktion_1.h"
 #include "Funktion_2.h"
 #include "Simpson.h"
