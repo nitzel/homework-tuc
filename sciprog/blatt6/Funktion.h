@@ -1,3 +1,9 @@
+/**
+ * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
+ * @file B6U1.cpp
+ * @desc Homework Blatt6 for SciProg
+ */
+
 #pragma once
 #include <iostream>
 class Funktion
