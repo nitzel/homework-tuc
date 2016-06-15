@@ -1,6 +1,6 @@
 /**
  * @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
- * @file Funktion.h.cpp
+ * @file Funktion.h
  * @desc Homework Blatt6 for SciProg
  */
 
