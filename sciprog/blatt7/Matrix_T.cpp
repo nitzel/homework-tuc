@@ -1,10 +1,18 @@
-#include "matrix_T.h"
+/**
+* @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
+* @file Matrix_T.cpp
+* @desc Homework Blatt7 for SciProg
+* Jede 'MatrixClass' wurde durch 'Matrix_T <T>' und jeder double wurde durch ein 'T' ersetzt
+*/
+#include "Matrix_T.h"
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
+#include <exception>
+
 
 // Set number of matrix rows and columns and 
-// initialize matrix elements with a given double value
+// initialize matrix elements with a given template value 
 template <typename T> void Matrix_T <T>::Resize(size_t numRows, size_t numCols, const T &value)
 {
 	a_.resize(numRows*numCols);
@@ -17,19 +25,25 @@ template <typename T> void Matrix_T <T>::Resize(size_t numRows, size_t numCols, 
 // Access matrix element at position (i,j)
 template <typename T> T &Matrix_T <T>::operator()(size_t i, size_t j)
 {
-	if ((i<0) || (i >= numRows_))
+	try
 	{
-		std::cerr << "Illegal row index " << i;
-		std::cerr << " valid range is (0:" << numRows_ - 1 << ")";
-		std::cerr << std::endl;
-		exit(EXIT_FAILURE);
+		a_[i*numCols_ + j];
 	}
-	if ((j<0) || (j >= numCols_))
+	catch ( IllegalRowIndex)
 	{
-		std::cerr << "Illegal column index " << j;
-		std::cerr << " valid range is (0:" << numCols_ - 1 << ")";
-		std::cerr << std::endl;
-		exit(EXIT_FAILURE);
+		if ((i<0) || (i >= numRows_))
+		{
+			std::cerr << "Exception caught: " << IllegalRowIndex.what() << i << ", valid range for i is (0:" << numRows_ - 1 << ")" << std::endl;
+		}
+		
+	}
+	catch (IllegalColumnIndex )
+	{
+		
+		if ((j<0) || (j >= numCols_))
+		{
+			std::cerr << "Exception caught: " << IllegalColumnIndex.what() << j << ", valid range is (0:" << numCols_ - 1 << ")" << std::endl;
+		}
 	}
 	return a_[i*numCols_ + j];
 }
@@ -37,19 +51,25 @@ template <typename T> T &Matrix_T <T>::operator()(size_t i, size_t j)
 // Access matrix element at position (i,j)
 template <typename T> T Matrix_T <T>::operator()(size_t i, size_t j) const
 {
-	if ((i<0) || (i >= numRows_))
+	try
 	{
-		std::cerr << "Illegal row index " << i;
-		std::cerr << " valid range is (0:" << numRows_ - 1 << ")";
-		std::cerr << std::endl;
-		exit(EXIT_FAILURE);
+		a_[i*numCols_ + j];
 	}
-	if ((j<0) || (j >= numCols_))
+	catch (IllegalRowIndex)
 	{
-		std::cerr << "Illegal column index " << j;
-		std::cerr << " valid range is (0:" << numCols_ - 1 << ")";
-		std::cerr << std::endl;
-		exit(EXIT_FAILURE);
+		if ((i<0) || (i >= numRows_))
+		{
+			std::cerr << "Exception caught: " << IllegalRowIndex.what() << i << ", valid range for i is (0:" << numRows_ - 1 << ")" << std::endl;
+		}
+
+	}
+	catch (IllegalColumnIndex)
+	{
+
+		if ((j<0) || (j >= numCols_))
+		{
+			std::cerr << "Exception caught: " << IllegalColumnIndex.what() << j << ", valid range is (0:" << numCols_ - 1 << ")" << std::endl;
+		}
 	}
 	return a_[i*numCols_ + j];
 }
@@ -72,7 +92,7 @@ template <typename T> void Matrix_T <T>::Print() const
 // Arithmetic functions 
 
 // Multiplication by value x
-template <typename T> Matrix_T <T> &Matrix_T <T>::operator*=(double x)
+template <typename T> Matrix_T <T> &Matrix_T <T>::operator*=(T x)
 {
 	for (size_t i = 0; i<a_.size(); ++i)
 		a_[i] *= x;
@@ -85,10 +105,10 @@ template <typename T> Matrix_T <T> &Matrix_T <T>::operator+=(const Matrix_T &x)
 {
 	if ((x.numRows_ != numRows_) || (x.numCols_ != numCols_))
 	{
-		std::cerr << "Dimensions of matrix a (" << numRows_
+	
+		std::cerr << "Exception caught: " << DimensionMismatch.what() << "Dimensions of matrix a (" << numRows_
 			<< "x" << numCols_ << ") and matrix x ("
 			<< numRows_ << "x" << numCols_ << ") do not match!";
-		exit(EXIT_FAILURE);
 	}
 	for (size_t i = 0; i<a_.size(); ++i)
 		a_[i] += x.a_[i];
@@ -97,14 +117,15 @@ template <typename T> Matrix_T <T> &Matrix_T <T>::operator+=(const Matrix_T &x)
 
 
 // More arithmetic functions
-template <typename T> Matrix_T <T> operator*(const Matrix_T<T> &a, double x)
+template <typename T> Matrix_T <T> operator*(const Matrix_T<T> &a, T x)
 {
 	Matrix_T<T> temp(a);
 	temp *= x;
 	return temp;
 }
 
-template <typename T> Matrix_T <T> operator*(double x, const Matrix_T<T> &a)
+
+template <typename T> Matrix_T <T> operator*(T x, const Matrix_T<T> &a)
 {
 	Matrix_T<T> temp(a);
 	temp *= x;
@@ -118,3 +139,26 @@ template <typename T> Matrix_T <T> operator+(const  Matrix_T<T> &a, const Matrix
 	temp += b;
 	return temp;
 }
+
+// Define fitting exceptions
+struct IllegalRowIndex : public std:: exception
+{
+	const char * what() const throw ()
+	{
+		return "Illegal row index";
+	}
+};
+struct IllegalColumnIndex : public std::exception
+{
+	const char * what() const throw ()
+	{
+		return "Illegal column index";
+	}
+};
+struct DimensionMismatch : public std::exception
+{
+	const char * what() const throw ()
+	{
+		return "Dimension Mismatch";
+	}
+};
