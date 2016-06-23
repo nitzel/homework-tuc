@@ -1,3 +1,11 @@
+/**
+* @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
+* @file Matrix_T.h
+* @desc Homework Blatt7 for SciProg
+* Abgabe besteht aus den Aufgabenteilen 1 und 2. 
+* Die Abgabe ist leider Fehlerhaft ... :(
+*/
+
 #pragma once
 #include <iomanip>
 #include <iostream>
@@ -19,8 +27,8 @@ public:
 	T operator()(size_t i, size_t j) const;
 
 	// Arithmetic functions 
-	Matrix_T &operator*=(double x);
-	Matrix_T &operator+=(const Matrix_T &b);
+	template <typename T> Matrix_T <T> &Matrix_T <T>::operator*=(T x);
+	template <typename T> Matrix_T <T> &Matrix_T <T>::operator+=(const Matrix_T &x);
 
 	// Output matrix content
 	void Print() const;
@@ -67,7 +75,7 @@ private:
 };
 
 // More arithmetic functions
-template <typename T> Matrix_T<T>  operator*(const Matrix_T<T> &a, double x);
-template <typename T> Matrix_T<T>  operator*(double x, const Matrix_T< T> &a);
+template <typename T> Matrix_T<T>  operator*(const Matrix_T<T> &a, T x);
+template <typename T> Matrix_T<T>  operator*(T x, const Matrix_T< T> &a);
 template <typename T> Matrix_T<T> operator+(const Matrix_T<T> &a, const Matrix_T < T>&b);
 
