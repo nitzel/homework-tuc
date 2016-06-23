@@ -1,11 +1,17 @@
-
+/**
+* @author Birte Pajunk, Jan Schnitker, Yule Meyer-Olbersleben
+* @file Test.cpp
+* @desc Homework Blatt7 for SciProg
+* 
+*/
 #include <iostream>
 #include <cstdlib>
-#include "Matrix_T.h"
+#include "Matrix_T.cpp"
 int main()
 {
 	// Define a matrix A
 	Matrix_T <int> A(4, 4);
+	//Matrix_T <char*> S(4, 4);
 	std::cout << "A : " << std::endl;
 	A.Print();
 
@@ -19,12 +25,12 @@ int main()
 	Matrix_T <int> C(A);
 	std::cout << "C : " << std::endl;
 	C.Print();
-
+	int i = 2;
 	A = 2 * C;
 	std::cout << "A = 2 * C" << std::endl;
 	A.Print();
 
-	A = C*2.;
+	A = C*2;
 	std::cout << "A = C * 2." << std::endl;
 	A.Print();
 
